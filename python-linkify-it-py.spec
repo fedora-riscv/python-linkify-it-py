@@ -3,7 +3,7 @@
 
 Name:           python-linkify-it-py
 Version:        2.0.2
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Link recognition library with full Unicode support
 
 License:        MIT
@@ -32,7 +32,9 @@ Summary:        Link recognition library with full Unicode support
 
 %prep
 %autosetup -n linkify-it-py-%{version}
+%ifnarch riscv64
 rmdir SPECPARTS
+%endif
 
 %generate_buildrequires
 %pyproject_buildrequires -x test
@@ -51,6 +53,9 @@ rmdir SPECPARTS
 %doc CHANGELOG.md README.md
 
 %changelog
+* Web Jun 10 2024 Jiasheng Zhao <JasenChao@gmail.com> - 2.0.2-4
+- Fix failure on riscv64
+
 * Fri Jul 21 2023 Fedora Release Engineering <releng@fedoraproject.org> - 2.0.2-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_39_Mass_Rebuild
 
